@@ -46,9 +46,26 @@ export class CartComponent {
   ];
 
   ngOnInit(): void {
-    this.dataSource = this.cart.items;
+    // this.dataSource = this.cart.items;
+    this.CartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      this.dataSource = this.cart.items;
+    });
   }
   getTotal(items: Array<CartItem>): number {
     return this.CartService.getTotal(items);
+  }
+
+  onClearCart() {
+    this.CartService.clearCart();
+  }
+  onRemoveFromCart(item: CartItem): void {
+    this.CartService.removeFromCart(item);
+  }
+  onAddQuantity(item: CartItem): void {
+    this.CartService.addToCart(item);
+  }
+  onRemoveQuantity(item: CartItem): void{
+    this.CartService.removeQuantity(item)
   }
 }
