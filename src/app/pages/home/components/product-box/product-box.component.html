@@ -1,26 +1,30 @@
-<mat-card [ngClass]="{ 'text-center p-3': !fullWidthMode }">
-  <div [ngClass]="{ 'flex p-5': fullWidthMode }">
+<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
+  <div [ngClass]="{ flex: fullWidthMode }">
     <img
-      [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }"
-      src="https://placehold.co/400/orange/white"
-      class="mb-1 mx-auto h-[200px]"
-      alt=""
+      class="mb-1 mx-auto"
+      [ngClass]="{ 'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
+      [src]="product.image"
     />
     <div
       class="w-full"
       [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
     >
       <div>
-        <h5>shoes</h5>
-        <p class="truncate xhover:whitespace-normal">Snickers</p>
-        <p *ngIf="fullWidthMode">Description</p>
+        <h5>{{ product.category }}</h5>
+        <p
+          class="truncate hover:whitespace-normal"
+          [ngClass]="{ truncate: !fullWidthMode }"
+        >
+          {{ product.title }}
+        </p>
+        <p *ngIf="fullWidthMode">
+          {{ product.description }}
+        </p>
       </div>
-
       <div class="flex justify-between">
-        <span class="text-red-500">{{ "150" | currency }}</span>
-
+        <span class="text-red-400">{{ product.price | currency }}</span>
         <button (click)="onAddToCart()">
-          <mat-icon class="text-gray-500"> shopping_cart </mat-icon>
+          <mat-icon class="text-gray-500">shopping_cart</mat-icon>
         </button>
       </div>
     </div>
