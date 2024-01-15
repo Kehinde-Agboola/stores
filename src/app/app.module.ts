@@ -24,6 +24,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatBadgeModule,
     MatSnackBarModule,
     HttpClientModule,
+    NgxSpinnerModule,
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent],
